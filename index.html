@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccine-Centres</title>
+    <script src="script.js" defer></script>
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+
+ 
+    <!--====== Default CSS ======-->
+    <link rel="stylesheet" href="assets/css/default.css">
+    
+    <!--====== Style CSS ======-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" ></script>
+    <style> html, body, #map {margin: 0;padding: 0;width: 100%;height: 100%;} </style>
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/379qnqka3qk46hw4gwi6fshq2uvv1bwf/map_load?v=1.5&vectorLayer"></script>
+
+<!-- google fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet">
+
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fredoka+One&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Suez+One&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+</head>
+<style>
+  body{
+    background-color:#fdfafa;
+  }
+ .nav-link::after{
+  content:"";
+ display:block;
+  background-color:#d04e4e;
+  height:100%;
+  transition:transform 250ms ease-in;
+z-index:1;
+}
+
+.nav-item .nav-link:hover:after{
+  transform:scaleX(1);
+
+} 
+
+.nav-tabs {
+  border-bottom: 0px solid transparent;
+  font-size:20px;
+  font-family: 'Caveat', cursive;
+font-family: 'Fredoka One', cursive;
+
+
+}
+.nav-tabs .nav-link {
+  border: 0px solid transparent;
+}
+
+.nav-tabs .nav-link.active {
+  background-color:#e2e2e2;
+  border-bottom:#e2e2e2;
+  font-weight: bold;
+}
+
+
+
+
+/* content starts */
+.emp-profile  /*  container */
+{
+  border-radius:5px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  background-color:#ffffff;
+
+}
+
+input::placeholder{
+  font-family: 'Caveat', cursive;
+  font-size:1.5rem;
+}
+/* .profile-head .nav-link{
+  margin:auto;
+  width:500px;
+} */
+input[type="tel"]{
+  font-size:1rem;
+  font-weight: 500;
+box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 2px, rgba(0, 0, 0, 0.23) 0px 3px 2px;
+
+
+}
+input:focus{
+  outline: none;
+}
+.nav-link{
+  outline:none;
+}
+
+.navbar-area{
+  background-color: #addff1;
+}
+.navbar-area .nav-item a{
+  color:#ffffff;
+  font-family: 'Do Hyeon', sans-serif;
+font-size:18px;
+text-transform: uppercase;
+
+}
+.navbar-brand{
+  text-transform: uppercase;
+  color:#ffffff;
+  text-decoration: none;
+  font-family: 'Fredoka One', cursive;
+font-size: 25px;
+font-weight: 500;
+line-height: 40px;
+
+}
+.navbar-brand:hover{
+  color:#ffffff;
+}
+
+.nav-tabs .nav-link.active {
+  background-color:#e2e2e2;
+  border-bottom:#e2e2e2;
+  font-weight: bold;
+  color:#007bff;
+}
+.nav-tabs .nav-link{
+  color:black;
+}
+
+/* table */
+.table{
+  width:100%;
+  display:none;
+  height:400px;
+  border-radius: 5px;
+  border-radius:9px;
+
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 2px;  
+  height:2px;             /* width of the entire scrollbar */
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #e7e7e7;    
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: rgb(10, 6, 6);    /* color of the scroll thumb */
+  /* border-radius: 20px;   */
+ 
+  border-left: 5px solid rgb(15, 17, 14);     /* roundness of the scroll thumb */
+}
+
+ .table th {
+        font-size:20px;
+        font-family: 'Quicksand', sans-serif;
+    }
+    .table td {
+      font-size:16px;
+
+      font-family: 'Josefin Sans', sans-serif;
+}
+
+.table-responsive{
+    width:100%;
+    height:100%;
+    border-radius:9px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+
+  }
+@media only screen and (min-width:768px) and (max-width:991px)
+{
+  
+  .table {
+    width:100%;
+    /* border:3px solid yellow; */
+    transform:scale(0.8);
+    margin-left:-70px;
+    margin-top:-50px;
+
+    height:400px;
+
+  }
+
+}
+
+@media only screen and (min-width:533px) and (max-width:768px)
+{
+  
+  .table {
+    width:100%;
+    /* border:3px solid yellow; */
+    transform:scale(0.6);
+    margin-left:-100px;
+    margin-top:-95px;
+
+    height:400px;
+
+  }
+
+}
+
+@media only screen and (min-width:363px) and (max-width:533px) 
+{
+  .table-responsive{
+    /* border:3px solid black; */
+    width:100%;
+    /* height:200px; */
+    border-radius:9px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  }
+  .table {
+    width:100%;
+    /* border:3px solid yellow; */
+    transform:scale(0.43);
+    margin-left:-110px;
+    margin-top:-110px;
+    height:400px;
+   
+    
+
+  }
+  
+}
+
+@media only screen and  (max-width:363px) 
+{
+  body,.navs,.navbar{
+    min-width:363px;
+  }
+  .navbar{
+    min-width:320px;
+
+  }
+  .table-responsive{
+    /* border:3px solid orange; */
+    width:100%;
+    /* height:200px; */
+
+  }
+  .table {
+    width:100%;
+    /* border:3px solid yellow; */
+    transform:scale(0.4);
+    margin-left:-100px;
+    margin-top:-118px;
+    height:400px;
+    
+
+  }
+  
+} 
+#find_district label
+{
+  font-size:20px;
+  font-family: 'Suez One', serif;
+}  
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #a2cefa;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width:80%;
+  height: 3em;
+  line-height: 3;
+  background: #e9f0f0;
+  overflow: hidden;
+  border-radius: .25em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 3px 26px;
+
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #4391df;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #d6ab64;
+}
+ #map {margin: 0;padding: 0;width: 100%;height: 100%;}
+
+
+
+
+</style>
+<body onload="fetch_states()">
+    
+  <header class="header-area"  >
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 navs" style="position: relative;">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="index.html" >
+                           <p style="color: black;">Vaccine Centers</p>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+
+                      
+                        
+                        
+                    </nav> <!-- navbar -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </div> <!-- navbar area -->
+</header>
+
+
+<div class="container emp-profile mt-3 mb-3">
+    <form method="post">
+        <div class="row" >
+          
+            <div class="col-md-12" >
+                <div class="profile-head" >
+                            
+                    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+
+
+                        <li class="nav-item text-center">
+                            <a class="nav-link active" id="pin-tab" data-toggle="tab" href="#find_pin" role="tab" aria-controls="home" aria-selected="true">Find By Pincode</a>
+                        </li>
+
+                        
+                        <li class="nav-item text-center">
+                            <a class="nav-link" id="district-tab" data-toggle="tab" href="#find_district" role="tab" aria-controls="profile" aria-selected="false">Find By District</a>
+                        </li>
+
+                        <li class="nav-item text-center">
+                          <a class="nav-link" id="tab_map" data-toggle="tab" href="#find_map" role="tab" aria-controls="map"  aria-selected="false">Find By Map</a>
+                      </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+           
+            <div class="col-md-12">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="find_pin" role="tabpanel" aria-labelledby="pin-tab">
+                      <br/>
+                      <br/>
+                     <div class="row">
+                        <div class="col-12 col-sm-6" style="width:100%">
+                          <input type="tel" id="pin" placeholder="Enter Pincode:" class="form-control">  
+                       </div>
+                       <div class="col-12 col-sm-6 mt-2">
+                          <button type="button" id="pin_btn" class="btn btn-primary btn-block">Search</button><br>
+                       </div>
+
+                     </div>
+                      
+
+
+                        <br>
+     
+                        <div class="table-responsive mt-3 mb-3" >
+                          <table id="myTablePin" class="table table-bordered table-striped" >
+                             
+                             
+                            </table>
+                          </div>
+
+                    </div>
+                    <div class="tab-pane fade mt-3 mb-3" id="find_district" role="tabpanel" aria-labelledby="district-tab">
+                        
+                      <div class="row">
+
+                        <div class="col-5 col-sm-4 text-right" >
+
+                          <label >Select State: </label>
+                        </div>
+                        <div class="col">
+
+                        <div class="select">
+
+                        <select id="states" onchange="fetch_district()" class="form-control">
+                          <option>Select..</option>
+                        </select>  
+                      </div>
+
+                      </div>
+                      </div>
+                    
+
+
+                      <div class="row mt-4">
+
+                        <div class="col-5 col-sm-4 text-right">
+
+                        <label >Select District: </label>
+                      </div>
+                      <div class="col">
+                        <div class="select">
+
+                        <select id="district" onchange="findByDistrict()"  class="form-control">
+                          <option>Select..</option>
+                          </select>
+                        </div>  
+                        
+                      </div>
+                    </div><br>
+
+                        <div class="table-responsive" >
+                          <table  id="myTableDistrict" class="table table-responsive1" >
+                            <thead class="thead-dark">
+                              <th>
+                                Center-ID
+                              </th>
+                              <th>
+                                  Name
+                                 </th>
+                              <th>
+                               Address
+                              </th>
+                              <th>
+                                From-To
+                              </th>
+                              <th>
+                                Min. Age Limit
+                              </th>
+                             
+                              <th>
+                                Slots
+                              </th>
+                              <th>
+                                Vaccine
+                              </th>
+                              <th>
+                                Fee(in Rs.) 
+                              </th>
+                            </thead>
+                           
+                          </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show active" id="find_map" role="tabpanel" aria-labelledby="pin-tab">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>           
+</div>
+<div id="map"></div>
+</body>
+</html>
